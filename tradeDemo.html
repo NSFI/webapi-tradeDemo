@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>平台电商SDK使用DEMO</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <style>
+        select {
+            width: 200px;
+            padding: 3px 0;
+        }
+
+        .txt1 {
+            width: 200px;
+            padding: 3px 0;
+        }
+
+        .txt2 {
+            width: 410px;
+            padding: 3px 0;
+        }
+
+        textarea {
+            width: 410px;
+            height: 60px;
+            padding: 3px 0;
+            vertical-align: top;
+        }
+
+        input[type="button"] {
+            margin-right: 10px;
+        }
+
+        .ysf-iframe {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <h1>云商服WEB 平台电商SDK使用DEMO</h1>
+    <form onsubmit="return false;" id="yyy">
+        <p>APPKEY：
+            <select name="appkey">
+                <option value="f13509f5e8b8e1fbb388b3ddbee238c2">(6669)f13509f5e8b8e1fbb388b3ddbee238c2</option>
+                <option value="8b9d93b7c2267a5b183428de0b9fbb47">(sister-平台)8b9d93b7c2267a5b183428de0b9fbb47</option>
+                <option value="e27b1474c446ad2ddf3856b916495096">(testmeng-平台)e27b1474c446ad2ddf3856b916495096</option>
+                <option value="738252926368799fdff57c070c42c162">(hello-非平台)738252926368799fdff57c070c42c162</option>
+            </select>
+            <input class="txt1" type="text" name="appkey2" />
+        </p>
+        <p>用户Id：
+            <input class="txt2" type="text" name="uid" value="wfesdwdfwf2222" />
+        </p>
+        <p>商铺Id：
+            <input class="txt2" type="text" name="shopname" />
+        </p>
+        <p>机器人Id：
+            <input class="txt2" type="text" name="robotId" />
+        </p>
+        <p>分流客服id：
+            <input class="txt2" type="text" name="staffid" />
+        </p>
+        <p>模板Id：
+            <input class="txt2" type="text" name="templateId" />
+        </p>
+        <p>多模板分配Id：
+            <input class="txt2" type="text" name="shuntId" />
+        </p>
+        <p>vipLevel：
+            <input class="txt2" type="text" name="vipLevel" />
+        </p>
+        <p>用户名称：
+            <input class="txt2" type="text" name="rname" />
+        </p>
+        <p>邮箱地址：
+            <input class="txt2" type="text" name="email" />
+        </p>
+        <p>手机号码：
+            <input class="txt2" type="text" name="mobile" />
+        </p>
+        <p>商品标题：
+            <input class="txt2" type="text" name="title" value="任天堂（Nintendo）Switch游戏机" />
+        </p>
+        <p>商品描述：
+            <input class="txt2" type="text" name="desc" value="任天堂（Nintendo） Switch NS NX掌上游戏机便携 塞尔达马里奥新款游戏机 主机不锁 日版黑机彩色手柄+中文赛/塞尔达传说(指南+地图)"
+            />
+        </p>
+        <p>图片地址：
+            <input class="txt2" type="text" name="picture" value="https://img10.360buyimg.com/n5/s75x75_jfs/t4030/290/29851193/293745/d5e2b731/58ac3506Nbb57b5f6.jpg"
+            />
+        </p>
+        <p>图片跳转地址：
+            <input class="txt2" type="text" name="url" value="https://www.taobao.com/" />
+        </p>
+        <p>备注：
+            <input class="txt2" type="text" name="note" value="￥888" />
+        </p>
+        <p>
+            <input type="checkbox" name="isCustom" title="勾选时只有标题、图片地址、图片跳转地址生效">卡片自定义
+            <input type="checkbox" name="show" checked>访客端是否显示
+            <input type="checkbox" name="sendByUser">访客手动发送
+            <input type="checkbox" name="sendProToRobot">是否发送卡片至机器人
+        </p>
+        <p id="actionText" style="display: none;">
+            操作按钮文案：
+            <input class="txt2" type="text" name="actionText" value="发送链接" />
+        </p>
+        <p id="actionTextColor" style="display: none;">
+            操作按钮文案颜色：
+            <input class="txt2" type="text" name="actionTextColor" value="#000000" />
+        </p>
+
+        <p>
+            <input type="button" value="标签模式" name="open" />
+            <input type="button" value="标签模式(携带商品信息)" name="open2" />
+        </p>
+        <p>
+            <input type="button" value="弹窗模式" name="open1" />
+            <input type="button" value="弹窗模式(携带商品信息)" name="open3" />
+        </p>
+        <p>
+            <input type="button" value="用户登出" name="logoff" />
+            <input type="button" value="标签模式(非平台企业)" name="openNormalCorp" />
+        </p>
+    </form>
+
+    <!-- @ignore {mode:'online|test|release|image'} -->
+    <script>window.ysf = { RESROOT: '/' };</script>
+    <!-- <script src="http://qytest.netease.com/script/3fc92aa406e69f320dd704a452d1dec2.js" defer async></script> -->
+    <!-- /@ignore -->
+    <!--用户想启动demo页面，需要在线系统---设置---在线接入---网站----接入代码中将企业的地址复制下来替换下面的代码-->
+    <script src="../javascript/sdk/ysf.js"></script>
+
+    <script>
+        (function () {
+            ysf.config({
+                appKey: 'e27b1474c446ad2ddf3856b916495096',
+                corpInfo: 1
+            });
+
+            //api
+            function showElement(node) {
+                node.style.display = 'block';
+            }
+            function hideElement(node) {
+                node.style.display = 'none';
+            }
+            var form = document.getElementById('yyy');
+            var nactionText = document.getElementById('actionText'),
+                nactionTextColor = document.getElementById('actionTextColor');
+
+            form.sendByUser.addEventListener('change', function (e) {
+                var checked = e.target.checked;
+                if (checked) {
+                    showElement(nactionText);
+                    showElement(nactionTextColor);
+                } else {
+                    hideElement(nactionText);
+                    hideElement(nactionTextColor);
+                }
+            });
+
+            var form = document.getElementById('yyy');
+            var doConfig = function () {
+                var config = {
+                    uid: form.uid.value || '',
+                    appKey: form.appkey2.value.trim() || form.appkey.value,
+                    name: form.rname.value || '',
+                    email: form.email.value || '',
+                    mobile: form.mobile.value || '',
+                    level: form.vipLevel.value || 0,
+                    robotId: form.robotId.value || 0,
+                    staffid: form.staffid.value || '',
+                    shuntId: form.shuntId.value || '',
+                };
+                if (form.shopname.value) {
+                    config.bid = form.shopname.value;
+                }
+                ysf.config(config);
+            };
+            var doProduct = function () {
+                var options = {
+                    show: +form.show.checked,
+                    sendByUser: +form.sendByUser.checked,
+                    actionText: form.actionText.value,
+                    actionTextColor: form.actionTextColor.value,
+                    title: form.title.value || '',
+                    desc: form.desc.value || '',
+                    picture: form.picture.value || '',
+                    note: form.note.value || '',
+                    url: form.url.value || '',
+                    sendProToRobot: +form.sendProToRobot.checked
+                };
+                if (form.isCustom.checked) {
+                    options.template = 'pictureLink';
+                }
+                ysf.product(options);
+            }
+
+            form.open.onclick = function () {
+                doConfig();
+                window.open(ysf.url(), 'win');
+            };
+            form.open1.onclick = function () {
+                doConfig();
+                ysf.open();
+            };
+            form.open2.onclick = function () {
+                doConfig();
+                doProduct();
+
+                var appkey = form.appkey2.value.trim() || form.appkey.value,
+                    url = ysf.url();
+
+                //暂时只有hello企业
+                if (appkey == 'f13509f5e8b8e1fbb388b3ddbee238c2') {
+                    url = url.replace('client\?', 'client/trade\?');
+                }
+                window.open(url, 'win');
+            };
+            form.open3.onclick = function () {
+                doConfig();
+                doProduct();
+                ysf.open();
+            };
+            form.logoff.onclick = function () {
+                form.uid.value = '';
+                ysf.logoff();
+            };
+            form.openNormalCorp.onclick = function () {
+                doConfig();
+                var appkey = form.appkey2.value.trim() || form.appkey.value,
+                    url = ysf.url();
+                if (form.templateId.value) {
+                    url = ysf.url({
+                        templateId: form.templateId.value
+                    })
+                }
+                //暂时只有hello企业
+                if (appkey == '738252926368799fdff57c070c42c162' || appkey == 'f13509f5e8b8e1fbb388b3ddbee238c2') {
+                    url = url.replace('client\?', 'client/trade\?');
+                }
+                window.open(url, 'win');
+            }
+        })();
+    </script>
+</body>
+
+</html>
